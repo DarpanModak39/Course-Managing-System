@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function generatePDF() {
+            var element = document.getElementById('course');
+            html2pdf(element);
+        }
+
+    </script>
+    <title>View Course</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+        {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {% endif %}
+    <div style="padding-left: 50px; padding-top: 25px; ">
+        <button class="btn btn-primary" onclick="generatePDF()">Download</button>
+    </div>
+    <div id="course" style="padding:50px">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Walchand College of Engineering, Sangli
+                        (Government Aided Autonomous Institute)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="4" class="text-center">{{course.academic_year}}</th>
+                </tr>
+                <tr>
+                    <th colspan="4" class="text-center">Course Information</th>
+                </tr>
+                <tr>
+                    <th>Programme</th>
+                    <td colspan="3">{{course.programme}}</td>
+                </tr>
+                <tr>
+                    <th>Class, Semester</th>
+                    <td colspan="3">{{course.class_sem}}</td>
+                </tr>
+                <tr>
+                    <th>Course Code</th>
+                    <td colspan="3">{{course.course_code}}</td>
+                </tr>
+                <tr>
+                    <th>Course Name</th>
+                    <td colspan="3">{{course.course_name}}</td>
+                </tr>
+                <tr>
+                    <th>Course Type</th>
+                    <td colspan="3">{{course.course_type}}</td>
+                </tr>
+                <tr>
+                    <th>Desired Requisites</th>
+                    <td colspan="3">{{course.desired_requsite}}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="4" class="text-center">Teaching Scheme</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Lecture</th>
+                                    <td colspan="3">{{course.lecture}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tutorial</th>
+                                    <td colspan="3">{{course.tutorial}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Practical</th>
+                                    <td colspan="3">{{course.practical}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Interaction</th>
+                                    <td colspan="3">{{course.interaction}}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="4" class="text-center">Examination Scheme (Marks)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {% if "Theory" == course.course_type %}
+                                    <th>T1</th>
+                                    <th>T2</th>
+                                    {% else %}
+                                    <th>LA1</th>
+                                    <th>LA2</th>
+                                    {% endif %}
+                                    <th>ESE</th>
+                                    <th>Total</th>
+
+
+                                </tr>
+                                <tr>
+                                    {% if "Theory" == course.course_type %}
+                                    <td>20</td>
+                                    <td>20</td>
+                                    <td>60</td>
+                                    {% else %}
+                                    <td>30</td>
+                                    <td>30</td>
+                                    <td>40</td>
+                                    {% endif %}
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <td td colspan="12" class="text-center">
+                                        -
+                                    </td>
+                                </tr>
+                                <td colspan="12" class="text-center">Credits: 3</td>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Course Objectives</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2">1</th>
+                    <td>{{course.courseobjective1}}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2">2</th>
+                    <td>{{course.courseobjective2}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">3</th>
+                    <td>{{course.courseobjective3}}</td>
+                </tr>
+                {% if "None" != course.courseobjective4 %}
+                <tr>
+                    <th colspan="2">4</th>
+                    <td>{{course.courseobjective4}}</td>
+                </tr>
+                {% endif %}
+                {% if "None" != course.courseobjective5 %}
+                <tr>
+                    <th colspan="2">5</th>
+                    <td>{{course.courseobjective5}}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Course Outcomes (CO) with Bloom’s Taxonomy Level</th>
+
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-center">At the end of the course, the students will be able to</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2">CO1</th>
+                    <td>{{course.courseoutcomeverb1}} {{course.courseoutcome1}}</td>
+                    <td>{{course.courseoutcomelevel1}}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2">CO2</th>
+                    <td>{{course.courseoutcomeverb2}} {{course.courseoutcome2}}</td>
+                    <td>{{course.courseoutcomelevel2}}</td>
+                </tr>
+
+                {% if "None" != course.courseoutcome3 %}
+                <tr>
+                    <th colspan="2">CO3</th>
+                    <td>{{course.courseoutcomeverb3}} {{course.courseoutcome3}}</td>
+                    <td>{{course.courseoutcomelevel3}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.courseoutcome4 %}
+                <tr>
+                    <th colspan="2">CO4</th>
+                    <td>{{course.courseoutcomeverb4}} {{course.courseoutcome4}}</td>
+                    <td>{{course.courseoutcomelevel4}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.courseoutcome5 %}
+                <tr>
+                    <th colspan="2">CO5</th>
+                    <td>{{course.courseoutcomeverb5}} {{course.courseoutcome5}}</td>
+                    <td>{{course.courseoutcomelevel5}}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        {% if "Theory" == course.course_type %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Module</th>
+                    <th class="text-center">Module Contents</th>
+                    <th class="text-center">Hours</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <th>I</th>
+                    <td>{{course.module1}}</td>
+                    <td>{{course.modulehour1}}</td>
+                </tr>
+
+                <tr>
+                    <th>II</th>
+                    <td>{{course.module2}}</td>
+                    <td>{{course.modulehour2}}</td>
+                </tr>
+                <tr>
+                    <th>III</th>
+                    <td>{{course.module3}}</td>
+                    <td>{{course.modulehour3}}</td>
+                </tr>
+                <tr>
+                    <th>IV</th>
+                    <td>{{course.module4}}</td>
+                    <td>{{course.modulehour4}}</td>
+                </tr>
+                <tr>
+                    <th>V</th>
+                    <td>{{course.module5}}</td>
+                    <td>{{course.modulehour5}}</td>
+                </tr>
+                <tr>
+                    <th>VI</th>
+                    <td>{{course.module6}}</td>
+                    <td>{{course.modulehour6}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% else %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">List of Experiments / Lab Activities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{course.labexperiment}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        {% endif %}
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Text Books</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2">1</th>
+                    <td>{{course.textbook1}}</td>
+                </tr>
+
+                {% if "None" != course.textbook2 %}
+                <tr>
+                    <th colspan="2">2</th>
+                    <td>{{course.textbook2}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.textbook3 %}
+                <tr>
+                    <th colspan="2">3</th>
+                    <td>{{course.textbook3}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.textbook4 %}
+                <tr>
+                    <th colspan="2">4</th>
+                    <td>{{course.textbook4}}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">References</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2">1</th>
+                    <td>{{course.reference1}}</td>
+                </tr>
+
+                {% if "None" != course.reference2 %}
+                <tr>
+                    <th colspan="2">2</th>
+                    <td>{{course.reference2}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.reference3 %}
+                <tr>
+                    <th colspan="2">3</th>
+                    <td>{{course.reference3}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.reference4 %}
+                <tr>
+                    <th colspan="2">4</th>
+                    <td>{{course.reference4}}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Useful Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2">1</th>
+                    <td>{{course.usefullink1}}</td>
+                </tr>
+
+                {% if "None" != course.usefullink2 %}
+                <tr>
+                    <th colspan="2">2</th>
+                    <td>{{course.usefullink2}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.usefullink3 %}
+                <tr>
+                    <th colspan="2">3</th>
+                    <td>{{course.usefullink3}}</td>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.usefullink4 %}
+                <tr>
+                    <th colspan="2">4</th>
+                    <td>{{course.usefullink4}}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="16" class="text-center">CO-PO Mapping</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="1"></th>
+                    <th colspan="12" class="text-center">Programme Outcomes (PO)</th>
+                    <th colspan="3" class="text-center">PSO</th>
+                </tr>
+
+                <tr>
+                    <th colspan="1"> </th>
+                    <th colspan="1">1</th>
+                    <th colspan="1">2</th>
+                    <th colspan="1">3</th>
+                    <th colspan="1">4</th>
+                    <th colspan="1">5</th>
+                    <th colspan="1">6</th>
+                    <th colspan="1">7</th>
+                    <th colspan="1">8</th>
+                    <th colspan="1">9</th>
+                    <th colspan="1">10</th>
+                    <th colspan="1">11</th>
+                    <th colspan="1">12</th>
+                    <th colspan="1">1</th>
+                    <th colspan="1">2</th>
+                    <th colspan="1">3</th>
+
+                </tr>
+                <tr>
+                    <th colspan="1">CO1</th>
+                    <th colspan="1">{{course.co1po1}}</th>
+                    <th colspan="1">{{course.co1po2}}</th>
+                    <th colspan="1">{{course.co1po3}}</th>
+                    <th colspan="1">{{course.co1po4}}</th>
+                    <th colspan="1">{{course.co1po5}}</th>
+                    <th colspan="1">{{course.co1po6}}</th>
+                    <th colspan="1">{{course.co1po7}}</th>
+                    <th colspan="1">{{course.co1po8}}</th>
+                    <th colspan="1">{{course.co1po9}}</th>
+                    <th colspan="1">{{course.co1po10}}</th>
+                    <th colspan="1">{{course.co1po11}}</th>
+                    <th colspan="1">{{course.co1po12}}</th>
+                    <th colspan="1">{{course.co1pso1}}</th>
+                    <th colspan="1">{{course.co1pso2}}</th>
+                    <th colspan="1">{{course.co1pso3}}</th>
+                </tr>
+                <tr>
+                    <th colspan="1">CO2</th>
+                    <th colspan="1">{{course.co2po1}}</th>
+                    <th colspan="1">{{course.co2po2}}</th>
+                    <th colspan="1">{{course.co2po3}}</th>
+                    <th colspan="1">{{course.co2po4}}</th>
+                    <th colspan="1">{{course.co2po5}}</th>
+                    <th colspan="1">{{course.co2po6}}</th>
+                    <th colspan="1">{{course.co2po7}}</th>
+                    <th colspan="1">{{course.co2po8}}</th>
+                    <th colspan="1">{{course.co2po9}}</th>
+                    <th colspan="1">{{course.co2po10}}</th>
+                    <th colspan="1">{{course.co2po11}}</th>
+                    <th colspan="1">{{course.co2po12}}</th>
+                    <th colspan="1">{{course.co2pso1}}</th>
+                    <th colspan="1">{{course.co2pso2}}</th>
+                    <th colspan="1">{{course.co2pso3}}</th>
+                </tr>
+
+
+                {% if "None" != course.courseoutcome3 %}
+                <tr>
+                    <th colspan="1">CO3</th>
+                    <th colspan="1">{{course.co3po1}}</th>
+                    <th colspan="1">{{course.co3po2}}</th>
+                    <th colspan="1">{{course.co3po3}}</th>
+                    <th colspan="1">{{course.co3po4}}</th>
+                    <th colspan="1">{{course.co3po5}}</th>
+                    <th colspan="1">{{course.co3po6}}</th>
+                    <th colspan="1">{{course.co3po7}}</th>
+                    <th colspan="1">{{course.co3po8}}</th>
+                    <th colspan="1">{{course.co3po9}}</th>
+                    <th colspan="1">{{course.co3po10}}</th>
+                    <th colspan="1">{{course.co3po11}}</th>
+                    <th colspan="1">{{course.co3po12}}</th>
+                    <th colspan="1">{{course.co3pso1}}</th>
+                    <th colspan="1">{{course.co3pso2}}</th>
+                    <th colspan="1">{{course.co3pso3}}</th>
+                </tr>
+                {% endif %}
+
+                {% if "None" != course.courseoutcome4 %}
+                <tr>
+                    <th colspan="1">CO4</th>
+                    <th colspan="1">{{course.co4po1}}</th>
+                    <th colspan="1">{{course.co4po2}}</th>
+                    <th colspan="1">{{course.co4po3}}</th>
+                    <th colspan="1">{{course.co4po4}}</th>
+                    <th colspan="1">{{course.co4po5}}</th>
+                    <th colspan="1">{{course.co4po6}}</th>
+                    <th colspan="1">{{course.co4po7}}</th>
+                    <th colspan="1">{{course.co4po8}}</th>
+                    <th colspan="1">{{course.co4po9}}</th>
+                    <th colspan="1">{{course.co4po10}}</th>
+                    <th colspan="1">{{course.co4po11}}</th>
+                    <th colspan="1">{{course.co4po12}}</th>
+                    <th colspan="1">{{course.co4pso1}}</th>
+                    <th colspan="1">{{course.co4pso2}}</th>
+                    <th colspan="1">{{course.co4pso3}}</th>
+                </tr>
+                {% endif %}
+
+
+
+                {% if "None" != course.courseoutcome5 %}
+                <tr>
+                    <th colspan="1">CO5</th>
+                    <th colspan="1">{{course.co5po1}}</th>
+                    <th colspan="1">{{course.co5po2}}</th>
+                    <th colspan="1">{{course.co5po3}}</th>
+                    <th colspan="1">{{course.co5po4}}</th>
+                    <th colspan="1">{{course.co5po5}}</th>
+                    <th colspan="1">{{course.co5po6}}</th>
+                    <th colspan="1">{{course.co5po7}}</th>
+                    <th colspan="1">{{course.co5po8}}</th>
+                    <th colspan="1">{{course.co5po9}}</th>
+                    <th colspan="1">{{course.co5po10}}</th>
+                    <th colspan="1">{{course.co5po11}}</th>
+                    <th colspan="1">{{course.co5po12}}</th>
+                    <th colspan="1">{{course.co5pso1}}</th>
+                    <th colspan="1">{{course.co5pso2}}</th>
+                    <th colspan="1">{{course.co5pso3}}</th>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        {% if "Theory" == course.course_type %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="16" class="text-center">Assessment</th>
+                </tr>
+                <tr>
+                    <td>
+                        The assessment is based on 2 in semester examinations in the form of T1 (Test 1) and T2 (Test 2)
+                        of 20 marks each. Also there shall be 1 End Sem examination (ESE) of 60 marks. T1 shall be
+                        typically on modules 1 and 2, T2 based typically on modules 3, 4 and ESE shall be on all modules
+                        with nearly 50% weightage on modules 1 to 4 and 50% weightage on modules 5, 6.
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        {% else %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="5" class="text-center">Assessment</th>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        There are three components of lab assessment, LA1, LA2 and Lab ESE.
+                        IMP: Lab ESE is a separate head of passing. LA1, LA2 together is treated as In-Semester
+                        Evaluation.
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Assessment</th>
+                    <th>Based on</th>
+                    <th>Conducted by</th>
+                    <th>Typical Schedule (for 26-week Sem)</th>
+                    <th>Marks</th>
+                </tr>
+                <tr>
+                    <td>LA1</td>
+                    <td>Lab activities, attendance, journal</td>
+                    <td>Lab Course Faculty</td>
+                    <td>During Week 1 to Week 6 Marks Submission at the end of Week 6</td>
+                    <td>30</td>
+                </tr>
+
+                <tr>
+                    <td>LA2</td>
+                    <td>Lab activities, attendance, journal</td>
+                    <td>Lab Course Faculty</td>
+                    <td>During Week 7 to Week 12 Marks Submission at the end of Week 12</td>
+                    <td>30</td>
+                </tr>
+
+                <tr>
+                    <td>Lab ESE</td>
+                    <td>Lab activities, attendance, journal</td>
+                    <td>Lab Course Faculty</td>
+                    <td>During Week 15 to Week 18 Marks Submission at the end of Week 18</td>
+                    <td>40</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">
+                        Week 1 indicates starting week of a semester. The typical schedule of lab assessments is shown,
+                        considering a 26-week semester. The actual schedule shall be as per academic calendar. Lab
+                        activities/Lab performance shall include performing experiments, mini-project, presentations,
+                        drawings, programming and other suitable activities, as per the nature and requirement of the
+                        lab course. The experimental lab shall have typically 8-10 experiments.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        {% endif %}
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th colspan="5" class="text-center">Assessment Plan based on Bloom’s Taxonomy Level (Marks)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Bloom’s Taxonomy Level</th>
+                    {% if "Theory" == course.course_type %}
+                    <th>T1</th>
+                    <th>T2</th>
+                    <th>ESE</th>
+                    {% else %}
+                    <th>LA1</th>
+                    <th>LA2</th>
+                    <th>Lab ESE</th>
+                    {% endif %}
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Remember</td>
+                    <td>{{course.remembert1}}</td>
+                    <td>{{course.remembert2}}</td>
+                    <td>{{course.rememberese}}</td>
+                    <td>{{course.remembertotal}}</td>
+                </tr>
+                <tr>
+                    <td>Understand</td>
+                    <td>{{course.understandt1}}</td>
+                    <td>{{course.understandt2}}</td>
+                    <td>{{course.understandese}}</td>
+                    <td>{{course.understandtotal}}</td>
+                </tr>
+
+                <tr>
+                    <td>Apply</td>
+                    <td>{{course.applyt1}}</td>
+                    <td>{{course.applyt2}}</td>
+                    <td>{{course.applyese}}</td>
+                    <td>{{course.applytotal}}</td>
+                </tr>
+
+                <tr>
+                    <td>Analyze</td>
+                    <td>{{course.analyzet1}}</td>
+                    <td>{{course.analyzet2}}</td>
+                    <td>{{course.analyzeese}}</td>
+                    <td>{{course.analyzetotal}}</td>
+                </tr>
+                <tr>
+                    <td>Evaluate</td>
+                    <td>{{course.evaluatet1}}</td>
+                    <td>{{course.evaluatet2}}</td>
+                    <td>{{course.evaluateese}}</td>
+                    <td>{{course.evaluatetotal}}</td>
+                </tr>
+
+                <tr>
+                    <td>Create</td>
+                    <td>{{course.createt1}}</td>
+                    <td>{{course.createt2}}</td>
+                    <td>{{course.createese}}</td>
+                    <td>{{course.createtotal}}</td>
+                </tr>
+
+                <tr>
+                    <th>Total Marks</th>
+                    {% if "Theory" == course.course_type %}
+                    <td>20</td>
+                    <td>20</td>
+                    <td>60</td>
+                    {% else %}
+                    <td>30</td>
+                    <td>30</td>
+                    <td>40</td>
+                    {% endif %}
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</body>
+
+</html>
